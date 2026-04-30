@@ -113,7 +113,7 @@ ShapeDisplay.addEventListener("click", (e) => {
     const XShape = Math.floor(x / (ShapeSize + Padding))
     const ShapeList = Row.ShapeList
  
-    if (XShape in ShapeList) {
+    if (XShape in ShapeList && ShapeList[XShape].State) {
         const SelectionLeft = DisplayRect.left + Row.StartPos + XShape * (ShapeSize + Padding)
         const SelectionTop = DisplayRect.top + YShape * (ShapeSize + Padding)
         SetupSelectionUI(5, "white")
@@ -123,6 +123,9 @@ ShapeDisplay.addEventListener("click", (e) => {
         UtilCanvas.classList.remove("invisible")
         OptionLabel.classList.remove("invisible")
         OptionContainer.classList.remove("invisible")
+        for (let i = 0; i < OptionContainer.children.length; i++) {
+            OptionContainer.children[i].classList.add("NotRendered")
+        }
         for (let i = 0; i < OptionButtonElements.Shape.length; i++) {
             OptionButtonElements.Shape[i].classList.remove("NotRendered")
             OptionLabel.textContent = "--Shapes--"
@@ -154,6 +157,7 @@ function HookUpOptionButtons(event, Button) {
             ListToHide[i].classList.add("NotRendered")
     }
     if (Button.dataset.type == "Face") {
+        GameState.SelectedShape.Shape.State = null
         OptionLabel.classList.add("invisible")
         OptionLabel.textContent = "--" + "Shapes" + "--"
         GameState.CurrentGuess["Face"] = Button.dataset.value
@@ -258,7 +262,7 @@ function DrawShape(StartX, XNum, YNum) {
 
     ctx.drawImage(ChosenFace, XPos + ShapeSize / 2 - ChosenFace.width / 2, YPos + ShapeSize - ChosenFace.height - FaceYOffset)
 
-    GameState.ShapeSequence[YNum].ShapeList.push({Shape: PossibleShapes[ShapeNum], Color: ChosenColor, Face: PossibleFaces[FaceNum]})
+    GameState.ShapeSequence[YNum].ShapeList.push({Shape: PossibleShapes[ShapeNum], Color: ChosenColor, Face: PossibleFaces[FaceNum], State: "Shape"})
 }
 
 function DrawTintedImage(img, color, XPos, YPos) {

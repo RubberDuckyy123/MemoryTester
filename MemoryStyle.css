@@ -1,0 +1,151 @@
+body {
+    background-color: #00b8ff;
+}
+
+#Title {
+    font-size: 1.85rem;
+    color: black;
+}
+
+.ShapeDisplay {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.Shape {
+    width: 64px;
+    height: 64px;
+}
+
+.ShapeOutline {
+    background-color: red;
+    -webkit-mask-image: url(Shapes/Circle.png);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    mask-image: url(Shapes/Circle.png);
+    mask-repeat: no-repeat;
+    mask-size: contain;
+}
+
+.ShapeOutline img {
+    mix-blend-mode: multiply !important;
+}
+
+.ShapeImage {
+    image-rendering: pixelated;
+}
+
+.ImportantButton {
+    width: 50%;
+    max-width: 200px;
+    aspect-ratio: 3/1;
+    font-size: 1.5rem;
+    background-color: #008cff;
+    box-sizing: border-box;
+}
+
+.BasicContainer {
+    display: flex;
+    position: absolute;
+    width: 75vw;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #00a2ff;
+    border-radius: 15px;
+    box-shadow: -2px 2px 10px;
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.DropdownContainer {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    max-width: 220px;
+    position: relative;
+}
+
+.DropdownOptions {
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    top: 100%;
+}
+
+.DropdownOption img {
+    height: 80% !important;
+}
+
+.DropdownButton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #008cff;
+    width: 100%;
+    aspect-ratio: 6/1;
+    text-align: left;
+    font-size: clamp(1rem, 1vw, 1.75rem);
+}
+
+.DropdownButton img {
+    height: 40%;
+    width: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    image-rendering: pixelated;
+}
+
+.dynapuff {
+  font-family: "DynaPuff", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+
+#OptionContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    height: 50px;
+}
+
+.MemoryOption {
+    border-radius: 10px;
+    border: none;
+    width: 64px;
+    box-shadow:
+    4px 4px 3px white,
+    4px -4px 3px white,
+    -4px 4px 3px white,
+    -4px -4px 3px white;
+    cursor: pointer;
+}
+
+.MemoryOption img {
+    width: 70%;
+    height: auto;
+}
+
+.NotRendered {
+    display: none !important;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.flipped {
+    transform: scaleY(-1);
+}
+
+.CheckOff {
+    filter: grayscale(100%) invert();
+}

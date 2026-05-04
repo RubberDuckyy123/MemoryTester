@@ -1,15 +1,28 @@
 const DropdownContainers = document.querySelectorAll(".DropdownContainer")
 
+const MainMenu = document.getElementById("MainMenuContainer")
+const DropdownTemp = document.getElementById("DropdownTemplate")
+const DropdownButtonTemp = document.getElementById("DropdownButtonTemplate")
+
+const ColorNames = [
+    "red",
+    "green",
+    "purple",
+    "pink"
+]
+
 export const ThingsUsed = {
     UsedShapes: [
     "Triangle",
     "Square",
-    "Circle"
+    "Circle",
+    "Heart"
     ],
     UsedColors: [
-    "#ff0000e2",
+    "#ff0000",
     "#00ff00",
-    "#9000ff"
+    "#7300ff",
+    "#ff00fb"
     ],
     UsedFaces: [
     "HappyFace",
@@ -18,36 +31,54 @@ export const ThingsUsed = {
     ]
 }
 
-DropdownContainers.forEach((Container) => {
-    const Button = Container.children[0]
-    const DropdownArrow = Button.children[1]
-    const DropdownOptionsContainer = Container.children[1]
-    const List = Button.dataset.list
-    Button.addEventListener("click", () => {
+const ListNames = Object.keys(ThingsUsed)
+const Lists = Object.values(ThingsUsed)
+for (let ListNum = 0; ListNum < Lists.length; ListNum++) {
+    let List = Lists[ListNum]
+    const ListName = ListNames[ListNum]
+    const Dropdown = DropdownTemp.content.cloneNode(true).firstElementChild
+    const DropdownButton = Dropdown.querySelector(".DropdownButton") // ATP the only dropdownButton is this one
+    DropdownButton.dataset.list = ListName
+    const ButtonText = DropdownButton.querySelector("span")
+    const ButtonArrow = DropdownButton.querySelector("img")
+    ButtonText.textContent = AddSpaces(ListName)
+    const DropdownOptionsContainer = Dropdown.querySelector("div")
+    Dropdown.style.zIndex = String(Lists.length - ListNum + 1)
+    MainMenu.insertBefore(Dropdown, MainMenu.lastElementChild)
+    DropdownButton.addEventListener("click", () => {
         DropdownOptionsContainer.classList.toggle("NotRendered")
-        DropdownArrow.classList.toggle("flipped")
+        ButtonArrow.classList.toggle("flipped")
     })
-    const DropdownOptions = DropdownOptionsContainer.children
-    for (let i = 0; i < DropdownOptions.length; i++) {
-        const Option = DropdownOptions[i]
-        Option.addEventListener("click", () => {
-            const Value = Option.dataset.value
-            if (ThingsUsed[List].length < 2 && ThingsUsed[List][0] == Value) {
+    for (let ListIndex = 0; ListIndex < List.length; ListIndex++) {
+        const NewButton = DropdownButtonTemp.content.cloneNode(true).firstElementChild
+        NewButton.dataset.value = List[ListIndex]
+        const Span = NewButton.querySelector("span")
+        if (ListNames[ListNum] == "UsedColors") {
+            Span.textContent = ColorNames[ListIndex]
+        } else {
+            Span.textContent = AddSpaces(List[ListIndex]).toLowerCase()
+        }
+        const CheckBox = NewButton.querySelector("img")
+        NewButton.addEventListener("click", () => {
+            const Value = NewButton.dataset.value
+            if (List.length < 2 && List[0] == Value) {
                 return
             }
-            const img = Option.children[1]
-            img.classList.toggle("CheckOff")
-            if (ThingsUsed[List].includes(Value)) {
-                ThingsUsed[List] = RemoveItem(ThingsUsed[List], Value)
+
+            CheckBox.classList.toggle("CheckOff")
+            if (List.includes(Value)) {
+                List = RemoveItem(List, Value)
             } else {
-                ThingsUsed[List].push(Value)
+                List.push(Value)
             }
-            console.log(ThingsUsed[List])
         })
+        DropdownOptionsContainer.appendChild(NewButton)
     }
-})
+}
 
-
+function AddSpaces(str) {
+    return str.replace(/([A-Z])/g, ' $1').trim();
+}
 
 function RemoveItem(Array, Item) {
     const index = Array.indexOf(Item)

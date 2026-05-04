@@ -12,67 +12,22 @@
 </head>
 <body>
     <div id="MainMenuContainer" class="BasicContainer">
-        <h1 id="Title" class="dynapuff">memory trainer!! :)</h1>
-        <div id="ShapeSelect" class="DropdownContainer" style="z-index: 4;">
-            <button data-List="UsedShapes" class="DropdownButton dynapuff">
-                <span class="dynapuff">Shapes Used</span>
-                <img src="DropdownArrow.png" class="flipped">
-            </button>
-            <div class="DropdownOptions NotRendered">
-                <button data-Value="Triangle" class="DropdownButton DropdownOption">
-                    <span class="dynapuff">Triangle</span>
-                    <img src="CheckBox.png">
+        <h1 id="Title" class="dynapuff">memory tester!! :)</h1>
+        <template id="DropdownTemplate">
+            <div class="DropdownContainer">
+                <button data-List="UsedShapes" class="DropdownButton dynapuff">
+                    <span class="dynapuff">Shapes Used</span>
+                    <img src="DropdownArrow.png" class="flipped">
                 </button>
-                <button data-Value="Square" class="DropdownButton DropdownOption">
-                    <span class="dynapuff">Square</span>
-                    <img src="CheckBox.png">
-                </button>
-                <button data-Value="Circle" class="DropdownButton DropdownOption">
-                    <span class="dynapuff">Circle</span>
-                    <img src="CheckBox.png">
-                </button>
+                <div class="DropdownOptions NotRendered"></div>
             </div>
-        </div>
-        <div id="ColorSelect" class="DropdownContainer" style="z-index: 3;">
-            <button data-List="UsedColors" class="DropdownButton dynapuff">
-                <span class="dynapuff">Colors Used</span>
-                <img src="DropdownArrow.png" class="flipped">
+        </template>
+        <template id="DropdownButtonTemplate">
+            <button data-Value="Thing" class="DropdownButton DropdownOption">
+                <span class="dynapuff">Thing</span>
+                <img src="CheckBox.png">
             </button>
-            <div class="DropdownOptions NotRendered">
-                <button data-Value="#ff0000e2" class="DropdownButton DropdownOption">
-                    <span class="dynapuff" style="color: red">Red</span>
-                    <img src="CheckBox.png">
-                </button>
-                <button data-Value="#00ff00" class="DropdownButton DropdownOption">
-                    <span class="dynapuff" style="color: lightgreen">Green</span>
-                    <img src="CheckBox.png">
-                </button>
-                <button data-Value="#9000ff" class="DropdownButton DropdownOption">
-                    <span class="dynapuff" style="color: #9000ff">Purple</span>
-                    <img src="CheckBox.png">
-                </button>
-            </div>
-        </div>
-        <div id="FaceSelect" class="DropdownContainer" style="z-index: 2;">
-            <button data-List="UsedFaces" class="DropdownButton dynapuff">
-                <span class="dynapuff">Faces Used</span>
-                <img src="DropdownArrow.png" class="flipped">
-            </button>
-            <div class="DropdownOptions NotRendered">
-                <button data-Value="HappyFace" class="DropdownButton DropdownOption">
-                    <span class="dynapuff">Happy Face</span>
-                    <img src="CheckBox.png">
-                </button>
-                <button data-Value="AngryFace" class="DropdownButton DropdownOption">
-                    <span class="dynapuff">Angry Face</span>
-                    <img src="CheckBox.png">
-                </button>
-                <button data-Value="SleepyFace" class="DropdownButton DropdownOption">
-                    <span class="dynapuff">Sleepy Face</span>
-                    <img src="CheckBox.png">
-                </button>
-            </div>
-        </div>
+        </template>
         <button id="StartButton" class="dynapuff ImportantButton">Start</button>
     </div>
     <div id="GameContainer" class="BasicContainer NotRendered" style="background-color: transparent; box-shadow: none;">
